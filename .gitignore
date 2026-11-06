@@ -24,3 +24,5 @@ supabase/.env
 .env.*
 !.env.example
 .claude/
+supabase/signing_keys.json
+supabase/.temp/
