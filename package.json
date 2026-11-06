@@ -1,0 +1,29 @@
+{
+  "name": "fremwork-ai",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n web,api,site -c green,blue,magenta \"npm run dev:web\" \"npm run dev:api\" \"npm run dev:site\"",
+    "dev:web": "npm run dev --workspace=@fremwork/web",
+    "dev:api": "npm run dev --workspace=@fremwork/api",
+    "start": "npm run start:web",
+    "start:api": "npm run start:prod --workspace=@fremwork/api",
+    "start:web": "npm start --workspace=@fremwork/web",
+    "build:web": "npm run build --workspace=@fremwork/web && node scripts/postbuild-web.js",
+    "build:api": "npm run build --workspace=@fremwork/api",
+    "build:types": "npm run build --workspace=@fremwork/types",
+    "build": "npm run build:types && npm run build:api && npm run build:web && npm run build:site-api && npm run build:site",
+    "typecheck": "npm run typecheck --workspaces",
+    "dev:site": "npm run dev --workspace=@fremwork/site",
+    "dev:site-api": "npm run dev --workspace=@fremwork/site-api",
+    "build:site": "npm run build --workspace=@fremwork/site",
+    "build:site-api": "npm run build --workspace=@fremwork/site-api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
